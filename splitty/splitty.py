@@ -51,6 +51,6 @@ def make_intervals(blocks):
     return vector
 
 
-def apply_list_invervals(list_, intervals):
+def apply_list_intervals(list_, intervals):
     """Apply slice lists in a list"""
     return [list_[interval] for interval in intervals]
