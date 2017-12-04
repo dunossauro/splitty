@@ -8,5 +8,5 @@ setup(name='splitty',
       author='Eduardo Mendes',
       author_email='mendesxeduardo@gmail.com',
       license='GPL',
-      packages=['splitter'],
+      packages=['splitty'],
       zip_safe=False)
