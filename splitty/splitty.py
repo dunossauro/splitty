@@ -3,9 +3,10 @@ from re import match
 
 def list_by_list(list_to_be_splited, list_with_intervals):
     """
-    Fatia uma lista baseado-se em outra lista.
+    Split list using other list.
 
-    NOTE: Ajustar essa função para seguir o padrão declarativo"""
+    TODO: Implement in declative style
+    """
     intervals = []
     for x, val in enumerate(list_to_be_splited):
         for y in list_with_intervals:
@@ -15,15 +16,16 @@ def list_by_list(list_to_be_splited, list_with_intervals):
 
 
 def list_by_re_pattern(list_to_be_splited, pattern):
-    """Fatia uma lista baseado-se em uma regex."""
+    """Split list using a regex."""
     return [(i, val) for i, val in enumerate(list_to_be_splited)
             if match(pattern, val)]
 
 
 def make_intervals(blocks):
     """
-    Monta intervalos de slices como números passados em tuplas.
+    Make slice intervals with tuple numbers.
 
+    TODO: translate this
     CASES:
         Caso o bloco venha vazio:
             return [slice(1, None)]
@@ -50,5 +52,5 @@ def make_intervals(blocks):
 
 
 def apply_list_invervals(list_, intervals):
-    """Aplica uma lista de intervalos a uma lista."""
+    """Apply slice lists in a list"""
     return [list_[interval] for interval in intervals]
