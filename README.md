@@ -1,6 +1,9 @@
 # splitty
 functional approach to work with iterables in python
 
+## Install
+`pip install splitty`
+
 ## Simple exaple
 ```python
 
