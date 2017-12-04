@@ -4,7 +4,7 @@ functional approach to work with iterables in python
 ## Simple exaple
 ```python
 
-from splitty import list_by_list, make_intervals
+from splitty import list_by_list, make_intervals, apply_list_invervals
 
 list_to_be_splited = ['spam', 1, 2, 3, 'eggs', 1, 2, 3, 'foo', 1, 2, 3]
 split_by = ['spam', 'eggs', 'foo']
