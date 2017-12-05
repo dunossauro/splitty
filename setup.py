@@ -7,6 +7,6 @@ setup(name='splitty',
       url='https://github.com/z4r4tu5tr4/splitty',
       author='Eduardo Mendes',
       author_email='mendesxeduardo@gmail.com',
-      license='GPL',
+      license='MIT',
       packages=['splitty'],
       zip_safe=False)
