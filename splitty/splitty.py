@@ -47,7 +47,7 @@ def make_intervals(blocks):
         if i == len(blocks) - 1:
             vector.append(slice(blocks[i], None))
         else:
-            vector.append(slice(blocks[i], blocks[i+1]))
+            vector.append(slice(blocks[i], blocks[i + 1]))
     return vector
 
 
