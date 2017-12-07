@@ -4,4 +4,4 @@ machine:
 
 test:
   post:
-- python tests/test_splitty.py
+      - python tests/test_splitty.py
