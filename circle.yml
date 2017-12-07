@@ -1,0 +1,7 @@
+machine:
+  python:
+    version: 3.6.3
+
+test:
+  post:
+- python test_splitty.py
