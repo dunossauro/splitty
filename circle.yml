@@ -1,7 +1,7 @@
 machine:
   python:
-    version: 3.6.0
+    version: 3.6.3
 
 test:
   post:
-- python test_splitty.py
+- python tests/test_splitty.py
