@@ -7,12 +7,12 @@ functional approach to work with iterables in python
 ## Simple example
 ```python
 
-from splitty import list_by_list, make_intervals, apply_list_intervals
+from splitty import *
 
 list_to_be_splited = ['spam', 1, 2, 3, 'eggs', 1, 2, 3, 'foo', 1, 2, 3]
 split_by = ['spam', 'eggs', 'foo']
 
-splited = list_by_list(list_to_be_splited, split_by)
+splited = find_list_elements(list_to_be_splited, split_by)
 # [(0, 'spam'), (4, 'eggs'), (8, 'foo')]
 
 intervals = make_intervals(splited)
@@ -20,4 +20,11 @@ intervals = make_intervals(splited)
 
 list_with_intervals = apply_list_intervals(list_to_be_splited, intervals)
 # [['spam', 1, 2, 3], ['eggs', 1, 2, 3], ['foo', 1, 2, 3]]
+
+# Alternative sintax to all steps
+list_with_intervals = list_by_list(list_to_be_splited, split_by)
+# [['spam', 1, 2, 3], ['eggs', 1, 2, 3], ['foo', 1, 2, 3]]
 ```
+
+# TODO:
+write tests using hypotheses
