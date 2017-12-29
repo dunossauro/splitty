@@ -1,7 +1,12 @@
 from re import match
 
-def _compose_functions(*funcs):
-    pass
+
+def clear_list_strings(strings):
+    """Clear a list of strings.
+
+    iter on a list and call split method on all substrings
+    """
+    return [string.strip() for string in strings if string.strip()]
 
 
 def list_by_list(list_with_elements: list, list_with_intervals: list) -> list:
@@ -18,7 +23,7 @@ def list_by_list(list_with_elements: list, list_with_intervals: list) -> list:
 
 def find_list_elements(full_list, list_with_values):
     """
-    Split list using other list.
+    Find occurrences in a list and make a index related
 
     TODO: Implement in declative style
     """
@@ -31,7 +36,7 @@ def find_list_elements(full_list, list_with_values):
 
 
 def list_by_re_pattern(list_to_be_splited: list, pattern: 're.pattern'):
-    """Split list using a regex."""
+    """Find pattern occurrences in a list and make a index related."""
     return [(i, val) for i, val in enumerate(list_to_be_splited)
             if match(pattern, val)]
 
@@ -40,15 +45,17 @@ def make_intervals(blocks):
     """
     Make slice intervals with tuple numbers.
 
-    TODO: translate this
-    CASES:
-        Caso o bloco venha vazio:
+    iter in internal tuples and make a lists using position values
+
+    Example:
+    >>> make_intervals([(0, 'a'), (5, 'b'), (10, 'c')])
+    [slice(0, 5), slice(5, 10), slice(10, None)]
+
+    Other cases:
+        case blank block:
             return [slice(1, None)]
-        Caso o bloco seja uma tupla:
-            será transformado em uma lista (pois só existe um valor)
-        Caso o bloco seja uma lista, vai ser iterado entre as tuplas internas
-            e será montada uma nova lista de slices entre os valores
-            return [slice(x, y), slice(y, z), slice(z, None)]
+        case block is atuple:
+            transform in a list
     """
     vector = []
     if not blocks:

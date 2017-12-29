@@ -4,7 +4,10 @@ functional approach to work with iterables in python
 ## Install
 `pip install splitty`
 
-## Simple example
+## How i use spllit?
+You can see examples
+
+### Simple example
 ```python
 
 from splitty import *
@@ -27,4 +30,5 @@ list_with_intervals = list_by_list(list_to_be_splited, split_by)
 ```
 
 # TODO:
+Implement documentation
 write tests using hypotheses
