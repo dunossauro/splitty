@@ -1,7 +1,7 @@
 from re import match
 
 
-def clear_list_strings(strings):
+def clear_list_strings(strings: list) -> list:
     """Clear a list of strings.
 
     iter on a list and call split method on all substrings
@@ -21,9 +21,10 @@ def list_by_list(list_with_elements: list, list_with_intervals: list) -> list:
                                     find_list_elements(list_with_elements,
                                                        list_with_intervals)))
 
-def find_list_elements(full_list, list_with_values):
+
+def find_list_elements(full_list: list, list_with_values: list) -> list:
     """
-    Find occurrences in a list and make a index related
+    Find occurrences in a list and make a index related.
 
     TODO: Implement in declative style
     """
@@ -35,13 +36,13 @@ def find_list_elements(full_list, list_with_values):
     return intervals
 
 
-def list_by_re_pattern(list_to_be_splited: list, pattern: 're.pattern'):
+def list_by_re_pattern(list_to_be_splited: list, pattern: 'pattern') -> list:
     """Find pattern occurrences in a list and make a index related."""
     return [(i, val) for i, val in enumerate(list_to_be_splited)
             if match(pattern, val)]
 
 
-def make_intervals(blocks):
+def make_intervals(blocks: list) -> list:
     """
     Make slice intervals with tuple numbers.
 
@@ -73,6 +74,6 @@ def make_intervals(blocks):
     return vector
 
 
-def apply_list_intervals(list_, intervals):
-    """Apply slice lists in a list"""
+def apply_list_intervals(list_: list, intervals: list) -> list:
+    """Apply slice lists in a list."""
     return [list_[interval] for interval in intervals]
