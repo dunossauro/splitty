@@ -1,3 +1,8 @@
+"""
+Splitty.
+
+functional approach to work with iterables in python
+"""
 from re import match
 
 
@@ -16,13 +21,13 @@ def list_by_list(list_with_elements: list, list_with_intervals: list) -> list:
     Composed function using apply_list_intervals,
         make_intervals and find_list_elements
     """
-    return apply_list_intervals(list_with_elements,
-                                make_intervals(
-                                    find_list_elements(list_with_elements,
-                                                       list_with_intervals)))
+    return apply_intervals(list_with_elements,
+                           make_intervals(
+                               find_elements(list_with_elements,
+                                             list_with_intervals)))
 
 
-def find_list_elements(full_list: list, list_with_values: list) -> list:
+def find_elements(full_list: list, list_with_values: list) -> list:
     """
     Find occurrences in a list and make a index related.
 
@@ -66,7 +71,7 @@ def make_intervals(blocks: list) -> list:
     if isinstance(blocks[0], tuple):
         blocks = list(map(lambda x: x[0], blocks))
 
-    for i, value in enumerate(blocks):
+    for i, _ in enumerate(blocks):
         if i == len(blocks) - 1:
             vector.append(slice(blocks[i], None))
         else:
@@ -74,6 +79,6 @@ def make_intervals(blocks: list) -> list:
     return vector
 
 
-def apply_list_intervals(list_: list, intervals: list) -> list:
+def apply_intervals(list_: list, intervals: list) -> list:
     """Apply slice lists in a list."""
     return [list_[interval] for interval in intervals]

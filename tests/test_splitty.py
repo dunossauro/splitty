@@ -1,8 +1,9 @@
 """Splitty tests."""
+
 from sys import path
 from unittest import TestCase, main
 path.append('./splitty')
-from splitty import list_by_re_pattern, find_list_elements, list_by_list
+from splitty import list_by_re_pattern, find_elements, list_by_list
 
 
 class TestFindListElements(TestCase):
@@ -12,7 +13,7 @@ class TestFindListElements(TestCase):
                               'eggs', 1, 2, 3,
                               'foo', 1, 2, 3]
 
-        self.assertEqual(find_list_elements(list_to_be_splited, split_by),
+        self.assertEqual(find_elements(list_to_be_splited, split_by),
                          [(0, 'spam'), (4, 'eggs'), (8, 'foo')])
 
     def test_shoud_be_blank_list_if_splited_by_blank_list(self):
@@ -20,7 +21,7 @@ class TestFindListElements(TestCase):
                               'eggs', 1, 2, 3,
                               'foo', 1, 2, 3]
 
-        self.assertEqual(find_list_elements(list_to_be_splited, []), [])
+        self.assertEqual(find_elements(list_to_be_splited, []), [])
 
 
 class TestListByList(TestCase):
@@ -44,7 +45,6 @@ class TestListByRePattern(TestCase):
                               'foo', '1', '2', '3']
         self.assertEqual(list_by_re_pattern(list_to_be_splited, split_by),
                          [(0, 'spam'), (4, 'eggs'), (8, 'foo')])
-
 
 
 if __name__ == '__main__':
