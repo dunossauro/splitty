@@ -14,7 +14,9 @@ def clear_list_strings(strings: list) -> list:
     return [string.strip() for string in strings if string.strip()]
 
 
-def list_by_list(list_with_elements: list, list_with_intervals: list) -> list:
+def list_by_list(list_with_elements: list,
+                 list_with_intervals: list,
+                 start=False) -> list:
     """
     Split a list using another list.
 
@@ -24,7 +26,7 @@ def list_by_list(list_with_elements: list, list_with_intervals: list) -> list:
     return apply_intervals(list_with_elements,
                            make_intervals(
                                find_elements(list_with_elements,
-                                             list_with_intervals)))
+                                             list_with_intervals), start))
 
 
 def find_elements(full_list: list, list_with_values: list) -> list:
@@ -47,11 +49,15 @@ def list_by_re_pattern(list_to_be_splited: list, pattern: 'pattern') -> list:
             if match(pattern, val)]
 
 
-def make_intervals(blocks: list) -> list:
+def make_intervals(blocks: list, start: bool=False) -> list:
     """
     Make slice intervals with tuple numbers.
 
     iter in internal tuples and make a lists using position values
+
+    Args:
+        blocks: List with tuples (position, value)
+        start: blocks don't have start match create that
 
     Example:
     >>> make_intervals([(0, 'a'), (5, 'b'), (10, 'c')])
@@ -60,7 +66,7 @@ def make_intervals(blocks: list) -> list:
     Other cases:
         case blank block:
             return [slice(1, None)]
-        case block is atuple:
+        case block is a tuple:
             transform in a list
     """
     vector = []
@@ -72,6 +78,8 @@ def make_intervals(blocks: list) -> list:
         blocks = list(map(lambda x: x[0], blocks))
 
     for i, _ in enumerate(blocks):
+        if start and i == 0:
+            vector.append(slice(0, blocks[i]))
         if i == len(blocks) - 1:
             vector.append(slice(blocks[i], None))
         else:
