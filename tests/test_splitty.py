@@ -46,6 +46,26 @@ class TestListByRePattern(TestCase):
         self.assertEqual(list_by_re_pattern(list_to_be_splited, split_by),
                          [(0, 'spam'), (4, 'eggs'), (8, 'foo')])
 
+    def test_dont_parse_if_has_non_string_value_in_iterable(self):
+        split_by = r'(spam|egg(s|z)|f.o)'
+        list_to_be_splited = ['spam', 1, 2, 3,
+                              'eggs', '1', '2', '3',
+                              'foo', '1', '2', '3']
+
+        with self.assertRaises(TypeError):
+            list_by_re_pattern(list_to_be_splited, split_by)
+
+    def test_parse_if_has_non_string_value_in_iterable_with_str_convert(self):
+        split_by = r'(spam|egg(s|z)|f.o)'
+        list_to_be_splited = ['spam', 1, 2, 3,
+                              'eggs', '1', '2', '3',
+                              'foo', '1', '2', '3']
+
+        self.assertEqual(list_by_re_pattern(list_to_be_splited,
+                                            split_by,
+                                            True),
+                         [(0, 'spam'), (4, 'eggs'), (8, 'foo')])
+
 
 class TestMakeIntervals(TestCase):
     def test_make_intervals(self):

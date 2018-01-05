@@ -43,13 +43,26 @@ def find_elements(full_list: list, list_with_values: list) -> list:
     return intervals
 
 
-def list_by_re_pattern(list_to_be_splited: list, pattern: 'pattern') -> list:
-    """Find pattern occurrences in a list and make a index related."""
-    return [(i, val) for i, val in enumerate(list_to_be_splited)
+def list_by_re_pattern(list_to_be_splited: list,
+                       pattern: 'pattern',
+                       str_convert: bool = False) -> list:
+    """Find pattern occurrences in a list and make a index related.
+
+    Args:
+        list_to_be_splited: list with values to split with pattern
+        pattern: regex pattern
+        str_convert: convert all list elements to string
+
+    Vars:
+        ltbs: map_object: result of conditional of str_convert
+    """
+    ltbs = map(str, list_to_be_splited) if str_convert else list_to_be_splited
+
+    return [(i, val) for i, val in enumerate(ltbs)
             if match(pattern, val)]
 
 
-def make_intervals(blocks: list, start: bool=False) -> list:
+def make_intervals(blocks: list, start: bool = False) -> list:
     """
     Make slice intervals with tuple numbers.
 
