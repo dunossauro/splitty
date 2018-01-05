@@ -90,3 +90,20 @@ def make_intervals(blocks: list, start: bool=False) -> list:
 def apply_intervals(list_: list, intervals: list) -> list:
     """Apply slice lists in a list."""
     return [list_[interval] for interval in intervals]
+
+
+def chunks(iterable: iter, size: int) -> list:
+    """Split a iterable in chunks.
+
+    Args:
+        iterable: a list, tuple, dict or iter to be chunked
+        size: size of chunks of iterable
+
+    >>> chunks([1, 2], 1)
+    [[1], [2]]
+
+    >>> chunks([1, 2], 2)
+    [[1, 2]]
+
+    """
+    return [iterable[i: i + size] for i in range(0, len(iterable), size)]

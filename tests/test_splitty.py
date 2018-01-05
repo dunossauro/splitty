@@ -3,8 +3,7 @@
 from sys import path
 from unittest import TestCase, main
 path.append('./splitty')
-from splitty import (list_by_re_pattern, find_elements,
-                     list_by_list, make_intervals)
+from splitty import *
 
 
 class TestFindListElements(TestCase):
@@ -17,7 +16,7 @@ class TestFindListElements(TestCase):
         self.assertEqual(find_elements(list_to_be_splited, split_by),
                          [(0, 'spam'), (4, 'eggs'), (8, 'foo')])
 
-    def test_shoud_be_blank_list_if_splited_by_blank_list(self):
+    def test_should_be_blank_list_if_splited_by_blank_list(self):
         list_to_be_splited = ['spam', 1, 2, 3,
                               'eggs', 1, 2, 3,
                               'foo', 1, 2, 3]
@@ -48,7 +47,7 @@ class TestListByRePattern(TestCase):
                          [(0, 'spam'), (4, 'eggs'), (8, 'foo')])
 
 
-class Test_make_intervals(TestCase):
+class TestMakeIntervals(TestCase):
     def test_make_intervals(self):
         _list = list('abcdefg')
         list_to_split = list('ce')
@@ -69,6 +68,37 @@ class Test_make_intervals(TestCase):
                          [slice(0, 2, None),
                           slice(2, 4, None),
                           slice(4, None, None)])
+
+class TestChunks(TestCase):
+    def test_chunk_should_be_one_list_by_value(self):
+        _list = list('abcdefg')
+
+        self.assertEqual(chunks(_list, 1),
+                         [['a'], ['b'], ['c'],
+                          ['d'], ['e'], ['f'],
+                          ['g']])
+
+    def test_internal_lists_should_be_the_same_of_n(self):
+        _list = list('abcdefg')
+        n = 1
+        result = chunks(_list, n)
+        for chunk in result:
+            self.assertEqual(len(chunk), n)
+
+    def test_last_internal_lists_should_be_less_than_n(self):
+        _list = list('abcdefg')
+        n = 2
+        result = chunks(_list, n)
+        last = result[-1]
+
+        self.assertLess(len(last), n)
+
+    def test_internals_should_be_less_than_n_if_n_is_greater_than_size(self):
+        _list = list('abcdefg')
+        n = 10
+        result = chunks(_list, n)
+
+        self.assertLess(len(result), n)
 
 
 if __name__ == '__main__':
