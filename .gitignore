@@ -1,9 +1,11 @@
+.hypothesis/
+Pipfile.lock
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-.hypothesis/
-Pipfile.lock
+
 
 # Distribution / packaging
 .Python
