@@ -7,6 +7,4 @@ test:
       - tox
 
   post:
-    - coverage run src/*.py
-    - coverage report
     - coveralls
