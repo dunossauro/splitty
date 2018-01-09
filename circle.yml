@@ -4,4 +4,4 @@ machine:
 
 test:
   post:
-      - python3 tests/test_splitty.py
+      - tox
