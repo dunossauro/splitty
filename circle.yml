@@ -2,10 +2,9 @@ machine:
   python:
     version: 3.6.0
 
-dependencies:
-  pre:
-    - pip install codecov
-
 test:
   override:
       - tox
+      - store_artifacts:
+      path: ./htmlcov
+      destination: artifacts/
