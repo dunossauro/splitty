@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/z4r4tu5tr4/splitty/badge.svg?branch=master)](https://coveralls.io/github/z4r4tu5tr4/splitty?branch=master)
+
 # splitty
 functional approach to work with iterables in python
 

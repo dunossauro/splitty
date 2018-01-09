@@ -5,6 +5,8 @@ machine:
 test:
   override:
       - tox
-      - store_artifacts:
-      path: ./htmlcov
-      destination: artifacts/
+
+  post:
+    - coverage run src/*.py
+    - coverage report
+    - coveralls
