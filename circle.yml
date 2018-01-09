@@ -3,5 +3,5 @@ machine:
     version: 3.6.0
 
 test:
-  post:
+  override:
       - tox
