@@ -1,9 +1,7 @@
 """Splitty tests."""
 
-from sys import path
 from unittest import TestCase, main
-path.append('./splitty')
-from splitty import *
+from splitty import *  # NOQA
 
 
 class TestFindListElements(TestCase):
@@ -88,6 +86,7 @@ class TestMakeIntervals(TestCase):
                          [slice(0, 2, None),
                           slice(2, 4, None),
                           slice(4, None, None)])
+
 
 class TestChunks(TestCase):
     def test_chunk_should_be_one_list_by_value(self):
