@@ -2,6 +2,13 @@ machine:
   python:
     version: 3.6.0
 
+dependencies:
+  override:
+    - pip install coveralls
+
 test:
   override:
       - tox
+
+  post:
+    - coveralls
