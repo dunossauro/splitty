@@ -33,14 +33,12 @@ def find_elements(full_list: list, list_with_values: list) -> list:
     """
     Find occurrences in a list and make a index related.
 
-    TODO: Implement in declative style
+    >>> find_elements(['spam', 1, 2, 3, 'eggs', 1, 2, 3], ['spam', 'eggs'])
+    [(0, 'spam'), (4, 'eggs')
     """
-    intervals = []
-    for x, val in enumerate(full_list):
-        for y in list_with_values:
-            if y == val:
-                intervals.append((x, val))
-    return intervals
+    return [(x, val) for x, val in enumerate(full_list)
+            for y in list_with_values
+            if y == val]
 
 
 def list_by_re_pattern(list_to_be_splited: list,
@@ -69,23 +67,18 @@ def make_intervals(blocks: list, start: bool = False) -> list:
     iter in internal tuples and make a lists using position values
 
     Args:
-        blocks: List with tuples (position, value)
+        blocks: List with intervals [0, 5, 10]
+            if block has a list of tuples [(0, 'a'), (5, 'b'), (10, 'c')]
+            use getitem to get only values like [0, 5, 10]
         start: blocks don't have start match create that
 
     Example:
     >>> make_intervals([(0, 'a'), (5, 'b'), (10, 'c')])
     [slice(0, 5), slice(5, 10), slice(10, None)]
-
-    Other cases:
-        case blank block:
-            return [slice(1, None)]
-        case block is a tuple:
-            transform in a list
     """
     vector = []
     if not blocks:
-        vector.append(slice(1, None))
-        return vector
+        return [slice(0, None, None)]
 
     if isinstance(blocks[0], tuple):
         blocks = list(map(lambda x: x[0], blocks))
