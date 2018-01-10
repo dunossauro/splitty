@@ -36,7 +36,6 @@ from splitty import *
 ```
 
 # TODO:
-- Test Runner (tox or green)
 - Implement documentation
 - Write tests using hypotheses
 - Lazy alternatives
