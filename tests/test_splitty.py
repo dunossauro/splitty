@@ -87,6 +87,16 @@ class TestMakeIntervals(TestCase):
                           slice(2, 4, None),
                           slice(4, None, None)])
 
+    def test_make_intervals_return_blank_if_input_blank(self):
+        self.assertEqual(make_intervals([]), [slice(0, None, None)])
+
+    def test_make_intervals_using_a_list_with_values(self):
+        self.assertEqual(make_intervals([1, 2, 3, 4]),
+                         [slice(1, 2, None),
+                          slice(2, 3, None),
+                          slice(3, 4, None),
+                          slice(4, None, None)])
+
 
 class TestChunks(TestCase):
     def test_chunk_should_be_one_list_by_value(self):
