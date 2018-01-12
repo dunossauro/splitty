@@ -7,6 +7,8 @@ name = "pypi"
 
 [packages]
 
+tox = "*"
+toolz = "*"
 
 
 [dev-packages]

@@ -3,7 +3,7 @@ Splitty.
 
 functional approach to work with iterables in python
 """
-from re import match
+from re import match as _match
 
 
 def clear_list_strings(strings: list) -> list:
@@ -11,7 +11,7 @@ def clear_list_strings(strings: list) -> list:
 
     iter on a list and call split method on all substrings
     """
-    return [string.strip() for string in strings if string.strip()]
+    return (string.strip() for string in strings if string.strip())
 
 
 def list_by_list(list_with_elements: list,
@@ -36,9 +36,9 @@ def find_elements(full_list: list, list_with_values: list) -> list:
     >>> find_elements(['spam', 1, 2, 3, 'eggs', 1, 2, 3], ['spam', 'eggs'])
     [(0, 'spam'), (4, 'eggs')
     """
-    return [(x, val) for x, val in enumerate(full_list)
+    return ((x, val) for x, val in enumerate(full_list)
             for y in list_with_values
-            if y == val]
+            if y == val)
 
 
 def list_by_re_pattern(list_to_be_splited: list,
@@ -56,8 +56,8 @@ def list_by_re_pattern(list_to_be_splited: list,
     """
     ltbs = map(str, list_to_be_splited) if str_convert else list_to_be_splited
 
-    return [(i, val) for i, val in enumerate(ltbs)
-            if match(pattern, val)]
+    return ((i, val) for i, val in enumerate(ltbs)
+            if _match(pattern, val))
 
 
 def make_intervals(blocks: list, start: bool = False) -> list:
@@ -90,12 +90,12 @@ def make_intervals(blocks: list, start: bool = False) -> list:
             vector.append(slice(blocks[i], None))
         else:
             vector.append(slice(blocks[i], blocks[i + 1]))
-    return vector
+    yield from vector
 
 
 def apply_intervals(list_: list, intervals: list) -> list:
     """Apply slice lists in a list."""
-    return [list_[interval] for interval in intervals]
+    return (list_[interval] for interval in intervals)
 
 
 def chunks(iterable: iter, size: int) -> list:
@@ -112,4 +112,4 @@ def chunks(iterable: iter, size: int) -> list:
     [[1, 2]]
 
     """
-    return [iterable[i: i + size] for i in range(0, len(iterable), size)]
+    return (iterable[i: i + size] for i in range(0, len(iterable), size))

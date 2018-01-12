@@ -1,1 +1,1 @@
-from .splitty import *  # NOQA
+from .eager import *  # NOQA
