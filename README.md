@@ -42,3 +42,4 @@ from splitty import *
 - Implement documentation
 - Write tests using hypotheses
 - Lazy alternatives
+- File manipulation objects
