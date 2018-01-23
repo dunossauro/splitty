@@ -1,9 +1,12 @@
 from splitty import (list_by_re_pattern, apply_intervals,
                      clear_list_strings, make_intervals)
 
+# Open moby dick book
 with open('examples/book_parsed/mobydick.txt') as text:
+    # book recive a non-blanklines strings
     book = clear_list_strings(text.read().split('\n'))
 
+# Find re ocurrences (using a regex) in all line lists
 numered_topics = list_by_re_pattern(book, r'CHAPTER \d{1,3}\. .*')
 """
 [(0, 'CHAPTER 1. Loomings.'),
@@ -18,6 +21,9 @@ numered_topics = list_by_re_pattern(book, r'CHAPTER \d{1,3}\. .*')
  (1537, 'CHAPTER 10. A Bosom Friend.'),
 """
 
+# Use regex finded topics and make a interval lists
+# somithng like [slice(0, 184), slice(184, 304) ...]
+# And apply this intervals in all book lines
 full_book_chapter_lists = apply_intervals(book,
                                           make_intervals(numered_topics))
 
