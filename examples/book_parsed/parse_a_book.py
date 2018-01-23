@@ -21,6 +21,7 @@ numered_topics = list_by_re_pattern(book, r'CHAPTER \d{1,3}\. .*')
 full_book_chapter_lists = apply_intervals(book,
                                           make_intervals(numered_topics))
 
+# join first chapter lists
 chapter_1 = ' '.join(full_book_chapter_lists[0])
 
 print(chapter_1)
@@ -30,6 +31,7 @@ CHAPTER 1. Loomings. Call me Ishmael. ... like a snow hill in the air.
 
 last_chapter = ' '.join(full_book_chapter_lists[-1])
 
+# join last chapter lists
 print(last_chapter)
 """
 CHAPTER 135. The Chase.—Third Day. The morning of the third day dawned fair
