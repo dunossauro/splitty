@@ -130,5 +130,12 @@ class TestChunks(TestCase):
         self.assertLess(len(result), n)
 
 
+class TestClearListString(TestCase):
+    def test_should_remove_blank_lines(self):
+        _list = ['\r\nHello', 'how', '\r', 'r', 'u\n', '\r']
+        expected = ['Hello', 'how', 'r', 'u']
+        self.assertEqual(clear_list_strings(_list), expected)
+
+
 if __name__ == '__main__':
     main()
