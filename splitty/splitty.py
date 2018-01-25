@@ -7,9 +7,13 @@ from re import match
 
 
 def clear_list_strings(strings: list) -> list:
-    """Clear a list of strings.
+    r"""Clear a list of strings.
 
-    iter on a list and call split method on all substrings
+    Remove newlines character in each string of a list and takes of all empty
+    strings
+
+    >>> clear_list_strings(['\r\nHello', 'how', 'r', 'u\n', '\r'])
+    ['Hello', 'how', 'r', 'u']
     """
     return [string.strip() for string in strings if string.strip()]
 
