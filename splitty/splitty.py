@@ -7,7 +7,8 @@ from re import match
 
 
 def clear_list_strings(strings: list) -> list:
-    r"""Clear a list of strings.
+    r"""
+    Clear a list of strings.
 
     Remove newlines character in each string of a list and takes of all empty
     strings
@@ -48,7 +49,8 @@ def find_elements(full_list: list, list_with_values: list) -> list:
 def list_by_re_pattern(list_to_be_splited: list,
                        pattern: 'pattern',
                        str_convert: bool = False) -> list:
-    """Find pattern occurrences in a list and make a index related.
+    """
+    Find pattern occurrences in a list and make a index related.
 
     Args:
         list_to_be_splited: list with values to split with pattern
@@ -103,7 +105,8 @@ def apply_intervals(list_: list, intervals: list) -> list:
 
 
 def chunks(iterable: iter, size: int) -> list:
-    """Split a iterable in chunks.
+    """
+    Split a iterable in chunks.
 
     Args:
         iterable: a list, tuple, dict or iter to be chunked
