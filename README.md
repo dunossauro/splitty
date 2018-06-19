@@ -1,6 +1,6 @@
-[![Build Status](https://circleci.com/gh/z4r4tu5tr4/splitty.svg?style=svg)](https://circleci.com/gh/z4r4tu5tr4/splitty)
-[![Coverage Status](https://coveralls.io/repos/github/z4r4tu5tr4/splitty/badge.svg?branch=master)](https://coveralls.io/github/z4r4tu5tr4/splitty?branch=master)
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/z4r4tu5tr4/splitty.svg?columns=all)](https://waffle.io/z4r4tu5tr4/splitty)
+[![Build Status](https://circleci.com/gh/dunossauro/splitty.svg?style=svg)](https://circleci.com/gh/dunossauro/splitty)
+[![Coverage Status](https://coveralls.io/repos/github/dunossauro/splitty/badge.svg?branch=master)](https://coveralls.io/github/dunossauro/splitty?branch=master)
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/dunossauro/splitty.svg?columns=all)](https://waffle.io/dunossauro/splitty)
 
 
 # splitty
