@@ -47,7 +47,7 @@ def find_elements(full_list: list, list_with_values: list) -> list:
 
 
 def list_by_re_pattern(list_to_be_splited: list,
-                       pattern: 'pattern',
+                       pattern: str,
                        str_convert: bool = False) -> list:
     """
     Find pattern occurrences in a list and make a index related.
