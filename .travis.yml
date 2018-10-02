@@ -1,0 +1,18 @@
+language: python
+
+python:
+  - 3.6
+
+matrix:
+  include:
+    - env: TOXENV=py3
+    - env: TOXENV=lint
+
+install:
+  - pip install tox coveralls
+
+script:
+  - tox
+
+after_success:
+  - coveralls
