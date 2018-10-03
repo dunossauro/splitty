@@ -1,11 +1,16 @@
 language: python
 
 python:
+  - 3.5
   - 3.6
+  - 3.7
 
 matrix:
   include:
     - env: TOXENV=py3
+    - env: TOXENV=py35
+    - env: TOXENV=py36
+    - env: TOXENV=py37
     - env: TOXENV=lint
 
 install:
