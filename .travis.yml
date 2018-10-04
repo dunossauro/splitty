@@ -1,17 +1,21 @@
 language: python
 
-python:
-  - 3.5
-  - 3.6
-  - 3.7
-
+branches:
+  only:
+    - /.*/
 matrix:
   include:
-    - env: TOXENV=py3
-    - env: TOXENV=py35
-    - env: TOXENV=py36
-    - env: TOXENV=py37
-    - env: TOXENV=lint
+    - python: 3.6
+      env: TOXENV=py36
+      
+    - python: 3.5
+      env: TOXENV=py35
+      
+    - python: 3.7
+      env: TOXENV=py37
+
+    - python: 3.5
+      env: TOXENV=lint
 
 install:
   - pip install tox coveralls
