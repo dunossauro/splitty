@@ -7,6 +7,7 @@ from re import match as _match
 from .dispatcher import _singledispatch
 from numbers import Number as _number
 
+
 def clear_list_strings(strings: list) -> list:
     r"""
     Clear a list of strings.
@@ -33,6 +34,7 @@ def list_by_list(list_with_elements: list,
                            make_intervals(
                                find_elements(list_with_elements,
                                              list_with_intervals), start))
+
 
 @_singledispatch
 def _nun_or_match(matcher, element):
