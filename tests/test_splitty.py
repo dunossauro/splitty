@@ -16,7 +16,7 @@ class TestFindListElements(TestCase):
                          [(0, 'spam'), (4, 'eggs'), (8, 'foo')])
 
     def test_find_list_should_return_positions_and_strings_with_regex(self):
-        split_by = ['spa\w', '\wggs', 'f\wo', 'b.r']
+        split_by = [r'spa\w', r'\wggs', r'f\wo', r'b.r']
         list_to_be_splited = [
             'spam', 1, 2, 3,
             'eggs', 1, 2, 3,
@@ -27,7 +27,7 @@ class TestFindListElements(TestCase):
                          [(0, 'spam'), (4, 'eggs'), (8, 'foo'), (12, 'bar')])
 
     def test_find_list_should_return_positions_and_strings_with_mixin_regex_and_string(self):
-        split_by = ['spa\w', 'eggs', 'f\wo', 'bar']
+        split_by = [r'spa\w', 'eggs', r'f\wo', 'bar']
         list_to_be_splited = [
             'spam', 1, 2, 3,
             'eggs', 1, 2, 3,
