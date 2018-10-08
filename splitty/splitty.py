@@ -3,8 +3,9 @@ Splitty.
 
 functional approach to work with iterables in python
 """
-from re import match
-
+from re import match as _match
+from .dispatcher import _singledispatch
+from numbers import Number as _number
 
 def clear_list_strings(strings: list) -> list:
     r"""
@@ -33,6 +34,20 @@ def list_by_list(list_with_elements: list,
                                find_elements(list_with_elements,
                                              list_with_intervals), start))
 
+@_singledispatch
+def _nun_or_match(matcher, element):
+    ...
+
+
+@_nun_or_match.register
+def _number_eq(matcher: _number, element):
+    return matcher == element
+
+
+@_nun_or_match.register
+def _str_eq(matcher: str, element):
+    return _match(matcher, str(element))
+
 
 def find_elements(full_list: list, list_with_values: list) -> list:
     """
@@ -43,7 +58,7 @@ def find_elements(full_list: list, list_with_values: list) -> list:
     """
     return [(x, val) for x, val in enumerate(full_list)
             for y in list_with_values
-            if y == val]
+            if _nun_or_match(y, val)]
 
 
 def list_by_re_pattern(list_to_be_splited: list,
@@ -63,7 +78,7 @@ def list_by_re_pattern(list_to_be_splited: list,
     ltbs = map(str, list_to_be_splited) if str_convert else list_to_be_splited
 
     return [(i, val) for i, val in enumerate(ltbs)
-            if match(pattern, val)]
+            if _match(pattern, val)]
 
 
 def make_intervals(blocks: list, start: bool = False) -> list:

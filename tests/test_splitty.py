@@ -5,14 +5,37 @@ from splitty import *  # NOQA
 
 
 class TestFindListElements(TestCase):
-    def test_find_list_elements(self):
+    def test_find_list_should_return_positions_and_strings(self):
         split_by = ['spam', 'eggs', 'foo']
-        list_to_be_splited = ['spam', 1, 2, 3,
-                              'eggs', 1, 2, 3,
-                              'foo', 1, 2, 3]
-
+        list_to_be_splited = [
+            'spam', 1, 2, 3,
+            'eggs', 1, 2, 3,
+            'foo', 1, 2, 3
+        ]
         self.assertEqual(find_elements(list_to_be_splited, split_by),
                          [(0, 'spam'), (4, 'eggs'), (8, 'foo')])
+
+    def test_find_list_should_return_positions_and_strings_with_regex(self):
+        split_by = ['spa\w', '\wggs', 'f\wo', 'b.r']
+        list_to_be_splited = [
+            'spam', 1, 2, 3,
+            'eggs', 1, 2, 3,
+            'foo', 1, 2, 3,
+            'bar', 1, 2, 3
+        ]
+        self.assertEqual(find_elements(list_to_be_splited, split_by),
+                         [(0, 'spam'), (4, 'eggs'), (8, 'foo'), (12, 'bar')])
+
+    def test_find_list_should_return_positions_and_strings_with_mixin_regex_and_string(self):
+        split_by = ['spa\w', 'eggs', 'f\wo', 'bar']
+        list_to_be_splited = [
+            'spam', 1, 2, 3,
+            'eggs', 1, 2, 3,
+            'foo', 1, 2, 3,
+            'bar', 1, 2, 3
+        ]
+        self.assertEqual(find_elements(list_to_be_splited, split_by),
+                         [(0, 'spam'), (4, 'eggs'), (8, 'foo'), (12, 'bar')])
 
     def test_should_be_blank_list_if_splited_by_blank_list(self):
         list_to_be_splited = ['spam', 1, 2, 3,
