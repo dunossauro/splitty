@@ -4,7 +4,7 @@ Splitty.
 functional approach to work with iterables in python
 """
 from re import match as _match
-from .dispatcher import _singledispatch
+from functools import singledispatch as _singledispatch
 from numbers import Number as _number
 
 
@@ -41,13 +41,13 @@ def _nun_or_match(matcher, element):
     ...
 
 
-@_nun_or_match.register
-def _number_eq(matcher: _number, element):
+@_nun_or_match.register(_number)
+def _number_eq(matcher, element):
     return matcher == element
 
 
-@_nun_or_match.register
-def _str_eq(matcher: str, element):
+@_nun_or_match.register(str)
+def _str_eq(matcher, element):
     return _match(matcher, str(element))
 
 
