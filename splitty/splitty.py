@@ -39,7 +39,7 @@ def find_elements(full_list: list, list_with_values: list) -> list:
     Find occurrences in a list and make a index related.
 
     >>> find_elements(['spam', 1, 2, 3, 'eggs', 1, 2, 3], ['spam', 'eggs'])
-    [(0, 'spam'), (4, 'eggs')
+    [(0, 'spam'), (4, 'eggs')]
     """
     return [(x, val) for x, val in enumerate(full_list)
             for y in list_with_values
@@ -80,7 +80,7 @@ def make_intervals(blocks: list, start: bool = False) -> list:
 
     Example:
     >>> make_intervals([(0, 'a'), (5, 'b'), (10, 'c')])
-    [slice(0, 5), slice(5, 10), slice(10, None)]
+    [slice(0, 5, None), slice(5, 10, None), slice(10, None, None)]
     """
     vector = []
     if not blocks:
