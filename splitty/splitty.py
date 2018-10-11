@@ -93,7 +93,7 @@ def make_intervals(blocks: list, start: bool = False) -> list:
         start: blocks don't have start match create that
 
     >>> make_intervals([(0, 'a'), (5, 'b'), (10, 'c')])
-    [slice(0, 5), slice(5, 10), slice(10, None, None)]
+    [slice(0, 5, None), slice(5, 10, None), slice(10, None, None)]
     """
     vector = []
     if not blocks:
