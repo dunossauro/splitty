@@ -7,7 +7,7 @@ from re import match
 
 
 def clear_list_strings(strings: list) -> list:
-    """
+    r"""
     Clear a list of strings
 
     Remove newlines character in each string of a list and takes of all empty
@@ -49,7 +49,7 @@ def find_elements(full_list: list, list_with_values: list) -> list:
 
     >>> find_elements(['spam', 1, 2, 3, 'eggs', 1, 2, 3], ['spam', 'eggs'])
 
-    [(0, 'spam'), (4, 'eggs')
+    [(0, 'spam'), (4, 'eggs')]
     """
     return [(x, val) for x, val in enumerate(full_list)
             for y in list_with_values
@@ -98,7 +98,7 @@ def make_intervals(blocks: list, start: bool = False) -> list:
 
     >>> make_intervals([(0, 'a'), (5, 'b'), (10, 'c')])
 
-    [slice(0, 5), slice(5, 10), slice(10, None)]
+    [slice(0, 5), slice(5, 10), slice(10, None, None)]
     """
     vector = []
     if not blocks:
