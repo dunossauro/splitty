@@ -1,3 +1,8 @@
+"""
+Splitty.
+
+Functional approach to work with iterables in python
+"""
 from .splitty import (
     clear_list_strings,
     list_by_list,
