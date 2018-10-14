@@ -1,5 +1,5 @@
 """
-Splitty
+Splitty.
 
 Functional approach to work with iterables in python
 """
@@ -10,13 +10,12 @@ from numbers import Number
 
 def clear_list_strings(strings: list) -> list:
     r"""
-    Clear a list of strings
+    Clear a list of strings.
 
     Remove newlines character in each string of a list and takes of all empty
     strings
 
     >>> clear_list_strings(['\r\nHello', 'how', 'r', 'u\n', '\r'])
-
     ['Hello', 'how', 'r', 'u']
     """
     return [string.strip() for string in strings if string.strip()]
@@ -26,14 +25,13 @@ def list_by_list(list_with_elements: list,
                  list_with_intervals: list,
                  start=False) -> list:
     """
-    Split a list using another list
+    Split a list using another list.
 
     >>> list_with_elements = ['spam', 1, 2, 3, 'eggs', 1, 2, 3, 'foo', 1, 2, 3]
 
     >>> list_with_intervals = ['spam', 'eggs', 'foo']
 
     >>> list_by_list(list_with_elements, list_with_intervals)
-
     [['spam', 1, 2, 3], ['eggs', 1, 2, 3], ['foo', 1, 2, 3]]
 
     Composed function using apply_intervals(),
@@ -57,10 +55,9 @@ def number_eq(matcher, element):
 
 def find_elements(full_list: list, list_with_values: list) -> list:
     """
-    Find occurrences in a list and make a index related
+    Find occurrences in a list and make a index related.
 
     >>> find_elements(['spam', 1, 2, 3, 'eggs', 1, 2, 3], ['spam', 'eggs'])
-
     [(0, 'spam'), (4, 'eggs')]
     """
     return [(x, val) for x, val in enumerate(full_list)
@@ -72,7 +69,7 @@ def list_by_re_pattern(list_to_be_splited: list,
                        pattern: str,
                        str_convert: bool = False) -> list:
     """
-    Find pattern occurrences in a list and make a index related
+    Find pattern occurrences in a list and make a index related.
 
     Args:
         list_to_be_splited: list with values to split with pattern
@@ -87,7 +84,6 @@ def list_by_re_pattern(list_to_be_splited: list,
     >>> regex_pattern = "[a-z]"
 
     >>> list_by_re_pattern(list_to_be_splited, regex_pattern)
-
     [(0, 'spam'), (2, 'eggs'), (4, 'foo')]
     """
     ltbs = map(str, list_to_be_splited) if str_convert else list_to_be_splited
@@ -98,7 +94,7 @@ def list_by_re_pattern(list_to_be_splited: list,
 
 def make_intervals(blocks: list, start: bool = False) -> list:
     """
-    Make slice intervals with tuple numbers
+    Make slice intervals with tuple numbers.
 
     iter in internal tuples and make a lists using position values
 
@@ -109,8 +105,7 @@ def make_intervals(blocks: list, start: bool = False) -> list:
         start: blocks don't have start match create that
 
     >>> make_intervals([(0, 'a'), (5, 'b'), (10, 'c')])
-
-    [slice(0, 5), slice(5, 10), slice(10, None, None)]
+    [slice(0, 5, None), slice(5, 10, None), slice(10, None, None)]
     """
     vector = []
     if not blocks:
@@ -131,14 +126,13 @@ def make_intervals(blocks: list, start: bool = False) -> list:
 
 def apply_intervals(list_: list, intervals: list) -> list:
     """
-    Apply slice lists in a list
+    Apply slice lists in a list.
 
     >>> list_with_elements = ['spam', 'eggs', 'foo', 'bar']
 
     >>> intervals = [0, 2, 3]
 
     >>> apply_intervals(list_with_elements, intervals)
-
     ['spam', 'foo', 'bar']
     """
     return [list_[interval] for interval in intervals]
@@ -146,7 +140,7 @@ def apply_intervals(list_: list, intervals: list) -> list:
 
 def chunks(iterable: iter, size: int) -> list:
     """
-    Split a iterable in chunks
+    Split a iterable in chunks.
 
     Args:
         iterable: a list, tuple, dict or iter to be chunked
