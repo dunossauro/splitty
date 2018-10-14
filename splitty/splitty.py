@@ -45,11 +45,40 @@ def list_by_list(list_with_elements: list,
 
 @singledispatch
 def nun_or_match(matcher, element):
+    r"""
+    Discover if matcher ir a Number or String and match then.
+
+    >>> nun_or_match(7, 7)
+    True
+
+    >>> nun_or_match('\w+', 'Hello')
+    <re.Match object; span=(0, 5), match='Hello'>
+
+    >>> nun_or_match('spam', 'spam')
+    <re.Match object; span=(0, 4), match='spam'>
+    """
+    ...
+
+
+@nun_or_match.register(str)
+def str_eq(matcher, element):
+    r"""
+    Match strings or regex using re.match, called by nun_or_match.
+
+    >>> nun_or_match('\w+', 'Hello')
+    <re.Match object; span=(0, 5), match='Hello'>
+    """
     return match(matcher, str(element))
 
 
 @nun_or_match.register(Number)
 def number_eq(matcher, element):
+    r"""
+    Match numbers , called by nun_or_match.
+
+    >>> nun_or_match(7, 7)
+    True
+    """
     return matcher == element
 
 
