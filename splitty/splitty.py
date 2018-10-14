@@ -3,9 +3,9 @@ Splitty
 
 Functional approach to work with iterables in python
 """
-from re import match as _match
-from functools import singledispatch as _singledispatch
-from numbers import Number as _number
+from re import match
+from functools import singledispatch
+from numbers import Number
 
 
 def clear_list_strings(strings: list) -> list:
@@ -45,19 +45,15 @@ def list_by_list(list_with_elements: list,
                                              list_with_intervals), start))
 
 
-@_singledispatch
-def _nun_or_match(matcher, element):
-    ...
+@singledispatch
+def nun_or_match(matcher, element):
+    return match(matcher, str(element))
 
 
-@_nun_or_match.register(_number)
-def _number_eq(matcher, element):
+@nun_or_match.register(Number)
+def number_eq(matcher, element):
     return matcher == element
 
-
-@_nun_or_match.register(str)
-def _str_eq(matcher, element):
-    return _match(matcher, str(element))
 
 
 def find_elements(full_list: list, list_with_values: list) -> list:
