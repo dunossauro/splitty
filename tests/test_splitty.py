@@ -4,15 +4,64 @@ from unittest import TestCase, main
 from splitty import *  # NOQA
 
 
-class TestFindListElements(TestCase):
-    def test_find_list_elements(self):
-        split_by = ['spam', 'eggs', 'foo']
-        list_to_be_splited = ['spam', 1, 2, 3,
-                              'eggs', 1, 2, 3,
-                              'foo', 1, 2, 3]
+class TestInit(TestCase):
+    def test_module_shouldnt_call_functions_out_all(self):
+        import splitty
+        with self.assertRaises(AttributeError):
+            splitty.nun_or_match()
 
+
+class TestNunOrMatch(TestCase):
+    def setUp(self):
+        from splitty.splitty import nun_or_match
+        self.nom = nun_or_match
+
+    def test_num_or_match_should_return_True_when_mach_same_number(self):
+        self.assertTrue(self.nom(7, 7))
+
+    def test_num_or_match_should_return_False_when_mach_different_number(self):
+        self.assertFalse(self.nom(7, 8))
+
+    def test_num_or_match_should_return_regex_match_when_compare_strings(self):
+        import re
+        self.assertIsInstance(self.nom('sa', 'sa'), re.Match)
+
+    def test_num_or_match_should_return_regex_match_when_non_match_regex(self):
+        self.assertIsNone(self.nom('sa', 's1a'))
+
+
+class TestFindListElements(TestCase):
+    def test_find_list_should_return_positions_and_strings(self):
+        split_by = ['spam', 'eggs', 'foo']
+        list_to_be_splited = [
+            'spam', 1, 2, 3,
+            'eggs', 1, 2, 3,
+            'foo', 1, 2, 3
+        ]
         self.assertEqual(find_elements(list_to_be_splited, split_by),
                          [(0, 'spam'), (4, 'eggs'), (8, 'foo')])
+
+    def test_find_list_should_return_positions_and_strings_with_regex(self):
+        split_by = [r'spa\w', r'\wggs', r'f\wo', r'b.r']
+        list_to_be_splited = [
+            'spam', 1, 2, 3,
+            'eggs', 1, 2, 3,
+            'foo', 1, 2, 3,
+            'bar', 1, 2, 3
+        ]
+        self.assertEqual(find_elements(list_to_be_splited, split_by),
+                         [(0, 'spam'), (4, 'eggs'), (8, 'foo'), (12, 'bar')])
+
+    def test_find_list_should_return_positions_and_strings_with_mixin_regex_and_string(self):
+        split_by = [r'spa\w', 'eggs', r'f\wo', 'bar']
+        list_to_be_splited = [
+            'spam', 1, 2, 3,
+            'eggs', 1, 2, 3,
+            'foo', 1, 2, 3,
+            'bar', 1, 2, 3
+        ]
+        self.assertEqual(find_elements(list_to_be_splited, split_by),
+                         [(0, 'spam'), (4, 'eggs'), (8, 'foo'), (12, 'bar')])
 
     def test_should_be_blank_list_if_splited_by_blank_list(self):
         list_to_be_splited = ['spam', 1, 2, 3,
@@ -135,7 +184,3 @@ class TestClearListString(TestCase):
         _list = ['\r\nHello', 'how', '\r', 'r', 'u\n', '\r']
         expected = ['Hello', 'how', 'r', 'u']
         self.assertEqual(clear_list_strings(_list), expected)
-
-
-if __name__ == '__main__':
-    main()

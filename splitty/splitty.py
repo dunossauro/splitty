@@ -4,6 +4,8 @@ Splitty.
 Functional approach to work with iterables in python
 """
 from re import match
+from functools import singledispatch
+from numbers import Number
 
 
 def clear_list_strings(strings: list) -> list:
@@ -41,6 +43,45 @@ def list_by_list(list_with_elements: list,
                                              list_with_intervals), start))
 
 
+@singledispatch
+def nun_or_match(matcher, element):
+    r"""
+    Discover if matcher ir a Number or String and match then.
+
+    >>> nun_or_match(7, 7)
+    True
+
+    >>> nun_or_match('\w+', 'Hello')
+    <re.Match object; span=(0, 5), match='Hello'>
+
+    >>> nun_or_match('spam', 'spam')
+    <re.Match object; span=(0, 4), match='spam'>
+    """
+    ...
+
+
+@nun_or_match.register(str)
+def str_eq(matcher, element):
+    r"""
+    Match strings or regex using re.match, called by nun_or_match.
+
+    >>> nun_or_match('\w+', 'Hello')
+    <re.Match object; span=(0, 5), match='Hello'>
+    """
+    return match(matcher, str(element))
+
+
+@nun_or_match.register(Number)
+def number_eq(matcher, element):
+    r"""
+    Match numbers , called by nun_or_match.
+
+    >>> nun_or_match(7, 7)
+    True
+    """
+    return matcher == element
+
+
 def find_elements(full_list: list, list_with_values: list) -> list:
     """
     Find occurrences in a list and make a index related.
@@ -50,7 +91,7 @@ def find_elements(full_list: list, list_with_values: list) -> list:
     """
     return [(x, val) for x, val in enumerate(full_list)
             for y in list_with_values
-            if y == val]
+            if nun_or_match(y, val)]
 
 
 def list_by_re_pattern(list_to_be_splited: list,
