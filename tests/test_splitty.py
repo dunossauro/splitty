@@ -4,6 +4,32 @@ from unittest import TestCase, main
 from splitty import *  # NOQA
 
 
+class TestInit(TestCase):
+    def test_module_shouldnt_call_functions_out_all(self):
+        import splitty
+        with self.assertRaises(AttributeError):
+            splitty.nun_or_match()
+
+
+class TestNunOrMatch(TestCase):
+    def setUp(self):
+        from splitty.splitty import nun_or_match
+        self.nom = nun_or_match
+
+    def test_num_or_match_should_return_True_when_mach_same_number(self):
+        self.assertTrue(self.nom(7, 7))
+
+    def test_num_or_match_should_return_False_when_mach_different_number(self):
+        self.assertFalse(self.nom(7, 8))
+
+    def test_num_or_match_should_return_regex_match_when_compare_strings(self):
+        import re
+        self.assertIsInstance(self.nom('sa', 'sa'), re.Match)
+
+    def test_num_or_match_should_return_regex_match_when_non_match_regex(self):
+        self.assertIsNone(self.nom('sa', 's1a'))
+
+
 class TestFindListElements(TestCase):
     def test_find_list_should_return_positions_and_strings(self):
         split_by = ['spam', 'eggs', 'foo']
@@ -158,7 +184,3 @@ class TestClearListString(TestCase):
         _list = ['\r\nHello', 'how', '\r', 'r', 'u\n', '\r']
         expected = ['Hello', 'how', 'r', 'u']
         self.assertEqual(clear_list_strings(_list), expected)
-
-
-if __name__ == '__main__':
-    main()
