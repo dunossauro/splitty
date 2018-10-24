@@ -23,8 +23,10 @@ class TestNunOrMatch(TestCase):
         self.assertFalse(self.nom(7, 8))
 
     def test_num_or_match_should_return_regex_match_when_compare_strings(self):
-        import re
-        self.assertIsInstance(self.nom('sa', 'sa'), re.Match)
+        import re, sys, _sre
+
+        if sys.version_info[1] >= 7:
+            self.assertIsInstance(self.nom('sa', 'sa'), re.Match)
 
     def test_num_or_match_should_return_regex_match_when_non_match_regex(self):
         self.assertIsNone(self.nom('sa', 's1a'))

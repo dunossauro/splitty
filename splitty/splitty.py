@@ -52,10 +52,10 @@ def nun_or_match(matcher, element):
     True
 
     >>> nun_or_match('\w+', 'Hello')
-    <re.Match object; span=(0, 5), match='Hello'>
+    <_sre.SRE_Match object; span=(0, 5), match='Hello'>
 
     >>> nun_or_match('spam', 'spam')
-    <re.Match object; span=(0, 4), match='spam'>
+    <_sre.SRE_Match object; span=(0, 4), match='spam'>
     """
     ...
 
@@ -66,7 +66,7 @@ def str_eq(matcher, element):
     Match strings or regex using re.match, called by nun_or_match.
 
     >>> nun_or_match('\w+', 'Hello')
-    <re.Match object; span=(0, 5), match='Hello'>
+    <_sre.SRE_Match object; span=(0, 5), match='Hello'>
     """
     return match(matcher, str(element))
 
