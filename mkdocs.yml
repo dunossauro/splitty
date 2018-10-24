@@ -1,0 +1,7 @@
+site_name: Splitty
+repo_url: https://github.com/dunossauro/splitty
+site_author: Eduardo Mendes
+nav:
+      - Home: index.md
+      - Example: example.md
+theme: readthedocs
