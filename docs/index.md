@@ -9,7 +9,7 @@ functional approach to work with iterables in python
 ## Install
 `pip install splitty`
 
-## How I use splitty?
+## How do I use splitty?
 You can see [examples](./examples)
 
 ### Simple example
