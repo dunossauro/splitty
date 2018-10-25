@@ -5,6 +5,7 @@ Functional approach to work with iterables in python
 """
 from re import match
 from functools import singledispatch
+from itertools import cycle
 from numbers import Number
 
 
@@ -143,13 +144,18 @@ def make_intervals(blocks: list, start: bool = False) -> list:
     if isinstance(blocks[0], tuple):
         blocks = list(map(lambda x: x[0], blocks))
 
-    for i, _ in enumerate(blocks):
-        if start and i == 0:
-            vector.append(slice(0, blocks[i]))
-        if i == len(blocks) - 1:
-            vector.append(slice(blocks[i], None))
-        else:
-            vector.append(slice(blocks[i], blocks[i + 1]))
+    if start:
+        vector.append(slice(0, blocks[0]))
+
+    blocks_cycle = cycle(blocks)
+    next(blocks_cycle)
+
+    middle = list(
+        map(lambda block: slice(block, next(blocks_cycle)), blocks[:-1])
+    )
+    vector += middle
+
+    vector.append(slice(blocks[-1], None))
     return vector
 
 
