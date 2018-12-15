@@ -55,5 +55,5 @@ processos = {
     for vara_name, vara in zip(vara_names, varas)
 }
 
-with open('examples/tjsp_parse/caderno3_parsed.json', 'w') as f:
+with open('examples/tjsp_parse/caderno3.json', 'w') as f:
     dump(processos, f, indent=2, ensure_ascii=False, sort_keys=True)
