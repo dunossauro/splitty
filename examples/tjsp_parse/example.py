@@ -12,9 +12,9 @@ regex_process = (
 )
 
 
-def get_process_number(vara, block):
+def get_process_number(processo):
     return (
-        search(regex_process, vara[block][0])
+        search(regex_process, processo[0])
         .group(0)
         .replace('Processo ', '')
         .strip()
@@ -31,21 +31,29 @@ vila_prudente = apply_intervals(
     ),
 )[0]
 
-vara_1 = apply_intervals(
+
+varas_block = list_by_re_pattern(
+    vila_prudente, r'^(Juizado Especial|\dª\sVara)\sCível$'
+)
+
+vara_names = [vara[1] for vara in varas_block]
+
+
+varas = apply_intervals(file, make_intervals(varas_block))
+
+processos = apply_intervals(
     vila_prudente,
-    make_intervals(
-        list_by_re_pattern(
-            vila_prudente, r'^(Juizado Especial|\dª\sVara)\sCível\n$'
-        )
-    ),
-)[0]
+    make_intervals(list_by_re_pattern(vila_prudente, regex_process)),
+)
 
-processo_blocks = make_intervals(list_by_re_pattern(vara_1, regex_process))
 
-processos_vara_1 = {
-    get_process_number(vara_1, processo): ' '.join(vara_1[processo])
-    for processo in processo_blocks
+processos = {
+    vara_name: {
+        get_process_number(processo): ''.join(processo)
+        for processo in processos
+    }
+    for vara_name, vara in zip(vara_names, varas)
 }
 
 with open('examples/tjsp_parse/caderno3_parsed.json', 'w') as f:
-    dump(processos_vara_1, f, indent=2, ensure_ascii=False, sort_keys=True)
+    dump(processos, f, indent=2, ensure_ascii=False, sort_keys=True)
