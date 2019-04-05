@@ -31,6 +31,9 @@ class TestNunOrMatch(TestCase):
     def test_num_or_match_should_return_regex_match_when_non_match_regex(self):
         self.assertIsNone(self.nom('sa', 's1a'))
 
+    def test_num_or_match_should_return_None_when_called_with_non_registered_type(self):
+        self.assertIsNone(self.nom([], 's1a'))
+
 
 class TestFindListElements(TestCase):
     def test_find_list_should_return_positions_and_strings(self):
