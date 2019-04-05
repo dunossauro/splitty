@@ -9,7 +9,7 @@ from itertools import cycle
 from numbers import Number
 
 
-def clear_list_strings(strings: list) -> list:
+def clear_list_strings(strings):
     r"""
     Clear a list of strings.
 
@@ -22,9 +22,7 @@ def clear_list_strings(strings: list) -> list:
     return [string.strip() for string in strings if string.strip()]
 
 
-def list_by_list(list_with_elements: list,
-                 list_with_intervals: list,
-                 start=False) -> list:
+def list_by_list(list_with_elements, list_with_intervals, start=False):
     """
     Split a list using another list.
 
@@ -38,10 +36,12 @@ def list_by_list(list_with_elements: list,
     Composed function using apply_intervals(),
     make_intervals() and find_elements()
     """
-    return apply_intervals(list_with_elements,
-                           make_intervals(
-                               find_elements(list_with_elements,
-                                             list_with_intervals), start))
+    return apply_intervals(
+        list_with_elements,
+        make_intervals(
+            find_elements(list_with_elements, list_with_intervals), start
+        ),
+    )
 
 
 @singledispatch
@@ -53,10 +53,10 @@ def nun_or_match(matcher, element):
     True
 
     >>> nun_or_match('\w+', 'Hello')
-    <_sre.SRE_Match object; span=(0, 5), match='Hello'>
+    <re.Match object; span=(0, 5), match='Hello'>
 
     >>> nun_or_match('spam', 'spam')
-    <_sre.SRE_Match object; span=(0, 4), match='spam'>
+    <re.Match object; span=(0, 4), match='spam'>
     """
     ...
 
@@ -67,7 +67,7 @@ def str_eq(matcher, element):
     Match strings or regex using re.match, called by nun_or_match.
 
     >>> nun_or_match('\w+', 'Hello')
-    <_sre.SRE_Match object; span=(0, 5), match='Hello'>
+    <re.Match object; span=(0, 5), match='Hello'>
     """
     return match(matcher, str(element))
 
@@ -83,21 +83,22 @@ def number_eq(matcher, element):
     return matcher == element
 
 
-def find_elements(full_list: list, list_with_values: list) -> list:
+def find_elements(full_list, list_with_values):
     """
     Find occurrences in a list and make a index related.
 
     >>> find_elements(['spam', 1, 2, 3, 'eggs', 1, 2, 3], ['spam', 'eggs'])
     [(0, 'spam'), (4, 'eggs')]
     """
-    return [(x, val) for x, val in enumerate(full_list)
-            for y in list_with_values
-            if nun_or_match(y, val)]
+    return [
+        (x, val)
+        for x, val in enumerate(full_list)
+        for y in list_with_values
+        if nun_or_match(y, val)
+    ]
 
 
-def list_by_re_pattern(list_to_be_splited: list,
-                       pattern: str,
-                       str_convert: bool = False) -> list:
+def list_by_re_pattern(list_to_be_splited, pattern, str_convert=False):
     """
     Find pattern occurrences in a list and make a index related.
 
@@ -118,11 +119,10 @@ def list_by_re_pattern(list_to_be_splited: list,
     """
     ltbs = map(str, list_to_be_splited) if str_convert else list_to_be_splited
 
-    return [(i, val) for i, val in enumerate(ltbs)
-            if match(pattern, val)]
+    return [(i, val) for i, val in enumerate(ltbs) if match(pattern, val)]
 
 
-def make_intervals(blocks: list, start: bool = False) -> list:
+def make_intervals(blocks, start=False):
     """
     Make slice intervals with tuple numbers.
 
@@ -159,7 +159,7 @@ def make_intervals(blocks: list, start: bool = False) -> list:
     return vector
 
 
-def apply_intervals(list_: list, intervals: list) -> list:
+def apply_intervals(list_, intervals):
     """
     Apply slice lists in a list.
 
@@ -173,7 +173,7 @@ def apply_intervals(list_: list, intervals: list) -> list:
     return [list_[interval] for interval in intervals]
 
 
-def chunks(iterable: iter, size: int) -> list:
+def chunks(iterable, size):
     """
     Split a iterable in chunks.
 

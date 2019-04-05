@@ -9,3 +9,5 @@ mkdocs = "*"
 [dev-packages]
 tox = "*"
 mkdocs = "*"
+mypy = "*"
+monkeytype = "*"

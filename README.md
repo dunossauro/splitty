@@ -38,6 +38,11 @@ from splitty import *
 # [['spam', 1, 2, 3], ['eggs', 1, 2, 3], ['foo', 1, 2, 3]]
 ```
 
+## Type Hints supported
+
+Based on PEP 484 we implement a stub file for mypy using .pyi in `splitty.splitty`
+
+
 # TODO:
 - Implement documentation
 - Write tests using hypotheses
