@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='splitty',
-      version='0.0.8',
+      version='0.0.9',
       description='functional approach to work with iterables in python',
       url='https://github.com/dunossauro/splitty',
       author='Eduardo Mendes',
