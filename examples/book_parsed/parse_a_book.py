@@ -1,5 +1,9 @@
-from splitty import (list_by_re_pattern, apply_intervals,
-                     clear_list_strings, make_intervals)
+from splitty import (
+    list_by_re_pattern,
+    apply_intervals,
+    clear_list_strings,
+    make_intervals,
+)
 
 
 # Open Moby Dick book
@@ -28,8 +32,7 @@ print(numered_topics)
 # Use regex to find topics and make a interval lists
 # Something like '[slice(0, 184), slice(184, 304) ...]'
 # And apply this intervals in all book lines
-full_book_chapter_lists = apply_intervals(book,
-                                          make_intervals(numered_topics))
+full_book_chapter_lists = apply_intervals(book, make_intervals(numered_topics))
 
 # Join first chapter's list
 chapter_1 = ' '.join(full_book_chapter_lists[0])
