@@ -4,6 +4,9 @@ htmlcov
 .tox/
 .hypothesis/
 Pipfile.lock
+monkeytype*
+.mypy*
+.pytest*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
